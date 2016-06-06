@@ -2,7 +2,7 @@
 class Mod_menu extends CI_Model{
 
 	function selectAll(){
-		return $this->db->get('tabel_kategori');
+		return $this->db->get('tabel_menu');
 	}
 
 	function selectParent(){

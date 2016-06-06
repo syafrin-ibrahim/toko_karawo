@@ -3,20 +3,19 @@
         <link href="<?php echo base_url()?>template/AdminLTE/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Data Kategori</h3>
+                                    <h3 class="box-title">Data menu</h3>
                                 </div><!-- /.box-header -->
                                 
                                 <?php
-                                echo anchor('admin/kategori/post','Input Kategori',array('class'=>'btn btn-primary btn-sm'))
+                                echo anchor('admin/menu/post','Input menu',array('class'=>'btn btn-primary btn-sm'))
                                 ?>
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Kategori</th>
+                                                <th>Nama menu</th>
                                                 <th>Jenis</th>
-                                                <th>Jumlah Barang</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -27,19 +26,18 @@
                                             foreach ($record as $r){
                                                 echo "<tr>
                                                       <td width='10'>$no</td>
-                                                      <td>".  strtoupper($r->nama_kategori)."</td>
+                                                      <td>".  strtoupper($r->menu_title)."</td>
                                                       <td>";
                                                       if($r->parent==0){
-                                                          echo "KATEGORI UTAMA";
+                                                          echo "menu UTAMA";
                                                       }else{
-                                                          $parent=$this->db->get_where('tabel_kategori',array('kategori_id'=>$r->parent))->row_array();
-                                                          echo strtoupper($parent['nama_kategori']);
+                                                          $parent=$this->db->get_where('tabel_menu',array('menu_id'=>$r->parent))->row_array();
+                                                          echo strtoupper($parent['nama_menu']);
                                                           //echo $r->parent;
                                                       }
                                                       echo"</td>
-                                                      <td></td>
-                                                      <td width='10'>".anchor("admin/kategori/edit/".$r->kategori_id,"<span class='glyphicon glyphicon-tags' aria-hidden='true'></span>",array('title'=>'edit data'))."</td>
-                                                      <td width='10'>".anchor("admin/kategori/delete/".$r->kategori_id,"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",array('title'=>'delete data'))."</td>
+                                                      <td width='10'>".anchor("admin/menu/edit/".$r->menu_id,"<span class='glyphicon glyphicon-tags' aria-hidden='true'></span>",array('title'=>'edit data'))."</td>
+                                                      <td width='10'>".anchor("admin/menu/delete/".$r->menu_id,"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",array('title'=>'delete data'))."</td>
                                                     </tr>";
                                                 $no++;
                                             }
