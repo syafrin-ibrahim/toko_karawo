@@ -14,7 +14,7 @@ class Produk extends CI_Controller{
 	function post(){
 		if(isset($_POST['simpan'])){
 
-			$config['upload_path']='./template/AdminLTE/gambarproduk/';
+			$config['upload_path']='./gambarproduk/';
 			$config['allowed_types']='jpg|png';
 			$this->load->library('upload',$config);
 			$this->upload->do_upload();
@@ -58,6 +58,7 @@ class Produk extends CI_Controller{
 		redirect('admin/produk');
 	}
 
+	
 
 }
 

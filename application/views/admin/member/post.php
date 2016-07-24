@@ -3,14 +3,14 @@
  <link href="<?php echo base_url()?>template/AdminLTE/css/AdminLTE.css" rel="stylesheet" type="text/css" />
  <div class="box box-primary">
  	<div class="box box-header">
- 		<h3 class="title">Input Data Menu</h3>
+ 		<h3 class="title">Input Data Kategori</h3>
  	</div>
- 	<?php echo form_open('admin/menu/post');?>
+ 	<?php echo form_open('admin/kategori/post');?>
  	<form role="form">
  		<div class="box-body">
  			<div class="form-group">
- 				<label>Nama Menu</label>
- 				<input type="text" name="nama" class="form-control" placeholder="Nama Menu">
+ 				<label>Nama Kategori</label>
+ 				<input type="text" name="nama" class="form-control" placeholder="Nama Kategori">
  			</div>
  			<div class="form-group">
  				<label>Link</label>
@@ -22,7 +22,7 @@
 	 					<option value='0' selected>Parent Menu</option>
 	 					<?php
 	 						foreach($parent as $p){
-	 							echo"<option value='".$p->menu_id."'>".$p->menu_title."</option>";
+	 							echo"<option value='".$p->kategori_id."'>".$p->nama_kategori."</option>";
 	 						}
 	 					?>
 	 			</select>
@@ -31,8 +31,8 @@
  		<div class="box-footer">
  			<button type="submit" name="simpan" class="btn btn-primary">simpan</button>
  			<?php
- 					echo anchor('admin/menu','kembali',array('class'=>'btn btn-primary'));
+ 					echo anchor('admin/kategori','kembali',array('class'=>'btn btn-primary'));
  			?>
  		</div>
- 	</form>
+ 	</form>   
  </div>

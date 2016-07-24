@@ -47,20 +47,7 @@
 		</div>
 		
 </div>
-     <script type="text/javascript">
-            $(function() {
-                $("#example1").dataTable();
-                $('#example2').dataTable({
-                    "bPaginate": true,
-                    "bLengthChange": false,
-                    "bFilter": false,
-                    "bSort": true,
-                    "bInfo": true,
-                    "bAutoWidth": false
-                });
-            });
-        </script>
-   <script src="<?php echo base_url()?>template/AdminLTE/js/jquery.min.js"></script>
+       <script src="<?php echo base_url()?>template/AdminLTE/js/jquery.min.js"></script>
         <script src="<?php echo base_url()?>template/AdminLTE/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url()?>template/AdminLTE/js/jquery-ui.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
@@ -73,3 +60,16 @@
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo base_url()?>template/AdminLTE/js/AdminLTE/demo.js" type="text/javascript"></script>
         <!-- page script -->
+        <script type="text/javascript">
+            $(function() {
+                $("#example1").dataTable();
+                $('#example2').dataTable({
+                    "bPaginate": true,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": false
+                });
+            });
+        </script>

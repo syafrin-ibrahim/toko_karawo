@@ -60,6 +60,11 @@ class Mod_produk extends CI_Model{
 			$this->db->delete('tabel_product');
 	}
 
+	function topProduk(){
+		return $this->db->query("select * from tabel_product limit 6");
+	}
+
+
 }
 
 ?>

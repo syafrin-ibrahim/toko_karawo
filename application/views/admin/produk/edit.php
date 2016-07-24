@@ -20,7 +20,7 @@
  				<input type="text" name="harga" class="form-control" value="<?php echo $produk['harga'];?>">
  			</div>
  			<div class="form-group">
- 			<img src="../../../../template/AdminLTE/gambarproduk/<?php echo $produk['gambar']; ?>" width="100" height="100">
+ 			<img src="../../../../gambarproduk/<?php echo $produk['gambar']; ?>" width="100" height="100">
  			</div>
  			<div class="form-group">
  				<label>Gambar <?php echo $produk['gambar']; ?></label>

@@ -3,29 +3,19 @@
         <link href="<?php echo base_url()?>template/AdminLTE/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Data menu</h3>
+                                    <h3 class="box-title">Data Member</h3>
                                 </div><!-- /.box-header -->
                                 
-                                
-                                <?php
-                                if($this->session->flashdata('pesan')){
-                                        echo"<div class='alert alert-info'>
-                                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>
-                                                &times;
-                                        </button>";
-                                        echo $this->session->flashdata('pesan');
-                                        echo"</div>";
-                                }
-                                echo anchor('admin/menu/post','Input menu',array('class'=>'btn btn-primary btn-sm'))
-                                ?>
-                            
+                               
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama menu</th>
-                                                <th>Jenis</th>
+                                                <th>Nama Pemesan</th>
+                                                <th>Tanggal</th>
+                                                <th>Status</th>
+                                                <th>No Resi</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -33,22 +23,16 @@
                                         <tbody>
                                             <?php
                                             $no=1;
-                                            foreach ($record as $r){
+                                            foreach ($t as $r){
+                                                $status=$r->status==1?'proses':'terkirim';
                                                 echo "<tr>
                                                       <td width='10'>$no</td>
-                                                      <td>".  strtoupper($r->menu_title)."</td>
-                                                      <td>";
-                                                      if($r->parent==0){
-                                                          echo "menu UTAMA";
-                                                      }else{
-                                                          $parent=$this->db->get_where('tabel_menu',array('menu_id'=>$r->parent))->row_array();
-                                                          echo strtoupper($parent['menu_title']);
-                                                          //echo $r->parent;
-                                                      }
-                                                      echo"</td>
-                                                      <td width='10'>".anchor("admin/menu/edit/".$r->menu_id,"<span class='glyphicon glyphicon-tags' aria-hidden='true'></span>",array('title'=>'edit data'))."</td>
-                                                      <td width='10'>".anchor("admin/menu/delete/".$r->menu_id,"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",array('title'=>'delete data',
-                                                        'onclick'=>"return confirm('yakin akan menghapus data ini ?')"))."</td>
+                                                      <td>".$r->nama_lengkap."</td>
+                                                      <td>".$r->tanggal."</td>
+                                                      <td>".$status."</td>
+                                                      <td>".$r->no_resi."</td>
+                                                      <td width='10'>".anchor("admin/transaksi/detail/".$r->transaksi_id,"<span class='glyphicon glyphicon-tags' aria-hidden='true'></span>",array('title'=>'edit data'))."</td>
+                                                      <td width='10'>".anchor("admin/transaksi/delete/".$r->transaksi_id,"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",array('title'=>'delete data'))."</td>
                                                     </tr>";
                                                 $no++;
                                             }
@@ -56,7 +40,7 @@
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
-                             <script src="<?php echo base_url()?>template/AdminLTE/js/jquery.min.js"></script>
+                                <script src="<?php echo base_url()?>template/AdminLTE/js/jquery.min.js"></script>
         <script src="<?php echo base_url()?>template/AdminLTE/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url()?>template/AdminLTE/js/jquery-ui.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
