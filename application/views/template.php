@@ -67,8 +67,9 @@
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Canada</a></li>
-									<li><a href="#">UK</a></li>
+
+									<li><?php echo anchor('language/change/Id','Indonesia');  ?></li>
+									<li><?php echo anchor('language/change/Eng','English');  ?></li>
 								</ul>
 							</div>
 							
@@ -99,6 +100,7 @@
 								<?php  
 									}else{
 										echo "<li>".anchor('#',"Selamat Datang <b>".$this->session->userdata('nama')."</b>")."</li>";
+										echo "<li>".anchor('cart/logout',"logout")."</li>";
 									}
 								?>
 							</ul>
@@ -154,7 +156,13 @@
 													echo"</ul>";
 													echo"</li>";
 												}else{
-														echo"<li>".anchor($p->link,$p->menu_title)."</li>";
+
+														if(empty($this->session->userdata('bahasa')) or $this->session->userdata('bahasa')=='Id'){
+																echo"<li>".anchor($p->link,$p->menu_title)."</li>";
+														}else{
+																echo"<li>".anchor($p->link,$p->menu_eng)."</li>";
+														}
+														
 												}
 										}
 								?>
@@ -291,62 +299,52 @@
 								</div>
 							</div>
 							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Womens
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Fendi</a></li>
-											<li><a href="#">Guess</a></li>
-											<li><a href="#">Valentino</a></li>
-											<li><a href="#">Dior</a></li>
-											<li><a href="#">Versace</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Kids</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Fashion</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Households</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Interiors</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Clothing</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Bags</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Shoes</a></h4>
-								</div>
-							</div>
+							
+
+							<?php
+								$mainkategori=$this->db->get_where('tabel_kategori',array('parent'=>0));
+
+								foreach($mainkategori->result() as $f){
+									$sub=$this->db->get_where('tabel_kategori',array('parent'=>$f->kategori_id));
+									if($sub->num_rows()>0){ ?>
+															<div class="panel panel-default">
+																<div class="panel-heading">
+																	<h4 class="panel-title">
+																		<a data-toggle="collapse" data-parent="#accordian" href="#<?php  echo $f->nama_kategori;?>">
+																			<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+																					<?php  echo $f->nama_kategori; ?>
+																		</a>
+																	</h4>
+																</div>
+								
+
+															<div id="<?php echo $f->nama_kategori; ?>" class="panel-collapse collapse">
+																<div class="panel-body">
+																		<ul>
+																			<?php
+																				foreach ($sub->result() as $e) {
+																					echo"<li>".anchor('kategori/'.$e->nama_kategori_seo,$e->nama_kategori)."</li>";
+																				}
+																			?>
+																		</ul>
+																</div>
+															</div>
+															</div>
+															
+											<?php 
+
+									}else{ ?>
+
+												<div class="panel panel-default">
+													<div class="panel-heading">
+													<h4 class="panel-title"><?php  echo anchor('kategori/'.$f->nama_kategori_seo,$f->nama_kategori); ?></h4>
+													</div>
+												</div>
+									<?php }
+								}
+							?>
+
+						
 						</div><!--/category-products-->
 					
 						<div class="brands_products"><!--brands_products-->
