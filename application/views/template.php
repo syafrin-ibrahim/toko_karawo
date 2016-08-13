@@ -67,8 +67,9 @@
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Canada</a></li>
-									<li><a href="#">UK</a></li>
+
+									<li><?php echo anchor('language/change/Id','Indonesia');  ?></li>
+									<li><?php echo anchor('language/change/Eng','English');  ?></li>
 								</ul>
 							</div>
 							
@@ -99,6 +100,7 @@
 								<?php  
 									}else{
 										echo "<li>".anchor('#',"Selamat Datang <b>".$this->session->userdata('nama')."</b>")."</li>";
+										echo "<li>".anchor('cart/logout',"logout")."</li>";
 									}
 								?>
 							</ul>
@@ -154,7 +156,13 @@
 													echo"</ul>";
 													echo"</li>";
 												}else{
-														echo"<li>".anchor($p->link,$p->menu_title)."</li>";
+
+														if(empty($this->session->userdata('bahasa')) or $this->session->userdata('bahasa')=='Id'){
+																echo"<li>".anchor($p->link,$p->menu_title)."</li>";
+														}else{
+																echo"<li>".anchor($p->link,$p->menu_eng)."</li>";
+														}
+														
 												}
 										}
 								?>
@@ -247,6 +255,7 @@
 					
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							
+
 								<?php
 											$main=$this->db->get_where('tabel_kategori',array('parent'=>0));
 											foreach($main->result() as $f){
