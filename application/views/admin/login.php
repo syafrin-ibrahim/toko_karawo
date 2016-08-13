@@ -4,7 +4,7 @@
 <html class="bg-black">
     <head>
         <meta charset="UTF-8">
-        <title>Belajarphp.net</title>
+        <title>Syafrin12</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <link href="<?php echo base_url() ?>template/AdminLTE/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url() ?>template/AdminLTE/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
