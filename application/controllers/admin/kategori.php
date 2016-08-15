@@ -2,6 +2,7 @@
 class Kategori extends CI_Controller{
 	function __construct(){
 		parent::__construct();
+		$this->load->library('form_validation');
 		$this->load->model('Mod_kategori');
 	}
 
@@ -13,8 +14,16 @@ class Kategori extends CI_Controller{
 
 	function post(){
 		if(isset($_POST['simpan'])){
-				$this->Mod_kategori->save();
-				redirect('admin/kategori');
+				$this->form_validation->set_rules('nama','name','required');
+				$this->form_validation->set_rules('link','link','required');
+				if($this->form_validation->run() == TRUE){
+					$this->Mod_kategori->save();
+					redirect('admin/kategori');
+				}else{
+					$data['parent']=$this->Mod_kategori->selectParent()->result();
+					$this->template->load('templateadmin','admin/kategori/post',$data);
+				}
+				
 		}else{
 				$data['parent']=$this->Mod_kategori->selectParent()->result();
 				$this->template->load('templateadmin','admin/kategori/post',$data);
