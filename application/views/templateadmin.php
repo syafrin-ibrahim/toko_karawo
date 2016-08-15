@@ -293,7 +293,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="<?php  echo base_url(); ?>index.php/admin/demo">
+                            <a href="<?php  echo base_url(); ?>index.php/admin/dashboard">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
@@ -316,6 +316,11 @@
                         }
 
                        ?>
+                       <li>
+                            <a href="<?php  echo base_url();?>index.php/admin/auth/logout">
+                                <i class="fa fa-dashboard"></i><span>Log-out</span>
+                            </a>
+                       </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->

@@ -17,7 +17,7 @@ class Auth extends CI_Controller{
 	}
 
 	function logout(){
-		redirect('admin/auth');
+		redirect(base_url().'/index.php/home');
 	}
 }
 ?>
