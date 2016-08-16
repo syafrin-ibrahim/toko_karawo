@@ -11,10 +11,12 @@
  			<div class="form-group">
  				<label>Nama Menu</label>
  				<input type="text" name="nama" class="form-control" placeholder="Nama Menu">
+ 				<?php echo form_error('nama');?>
  			</div>
  			<div class="form-group">
  				<label>Link</label>
  				<input type="text" name="link" class="form-control" placeholder="Link">
+ 				<?php  echo form_error('link');?>
  			</div>
  			<div class="form-group">
 	 			<label>Parent</label>

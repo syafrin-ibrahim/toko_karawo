@@ -17,10 +17,12 @@
                                         <div class="form-group">
                                             <label>Nama Menu</label>
                                             <input type="text" class="form-control" value="<?php echo $menu['menu_title'];?>" name="nama">
+                                            <?php  echo form_error('nama');?>
                                         </div>
                                         <div class="form-group">
                                             <label>Link</label>
                                             <input type="text" class="form-control" value="<?php echo $menu['link'];?>" name="link">
+                                            <?php  echo form_error('link');?>
                                         </div>
                                          <div class="form-group">
                                             <label>Parent</label>

@@ -14,6 +14,7 @@ class Mod_kategori extends CI_Model{
 			        'link'=>$this->input->post('link'),
 			        'nama_kategori_seo'=>seo_title($this->input->post('nama')));
 		$this->db->insert('tabel_kategori',$data);
+		return true;
 	}
 
 	function selectOne($id){
@@ -27,6 +28,7 @@ class Mod_kategori extends CI_Model{
 			        'nama_kategori_seo'=>seo_title($this->input->post('nama')));
 			$this->db->where('kategori_id',$this->input->post('idx'));
 			$this->db->update('tabel_kategori',$data);
+			return true;
 	}
 }
 

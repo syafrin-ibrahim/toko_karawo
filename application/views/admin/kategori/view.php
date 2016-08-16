@@ -8,6 +8,14 @@
                                 
                                 <?php
                                 //echo $this->session->flashdata('pesan');
+                                if($this->session->flashdata('pesan')){
+                                        echo"<div class='alert alert-info'>
+                                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>
+                                                &times;
+                                        </button>";
+                                        echo $this->session->flashdata('pesan');
+                                        echo"</div>";
+                                }
                                 echo anchor('admin/kategori/post','Input Kategori',array('class'=>'btn btn-primary btn-sm'))
                                 ?>
                                 <div class="box-body table-responsive">
@@ -40,7 +48,8 @@
                                                       echo"</td>
                                                       <td></td>
                                                       <td width='10'>".anchor("admin/kategori/edit/".$r->kategori_id,"<span class='glyphicon glyphicon-tags' aria-hidden='true'></span>",array('title'=>'edit data'))."</td>
-                                                      <td width='10'>".anchor("admin/kategori/delete/".$r->kategori_id,"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",array('title'=>'delete data'))."</td>
+                                                      <td width='10'>".anchor("admin/kategori/delete/".$r->kategori_id,"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",array('title'=>'delete data',
+                                                        'onclick'=>"return confirm('yakin akan menghapus data ini ?')"))."</td>
                                                     </tr>";
                                                 $no++;
                                             }

@@ -30,6 +30,7 @@ class Mod_menu extends CI_Model{
 			        'menu_title_seo'=>seo_title($this->input->post('nama')));
 			$this->db->where('menu_id',$this->input->post('idx'));
 			$this->db->update('tabel_menu',$data);
+		return true;
 	}
 
 	function delete($id){

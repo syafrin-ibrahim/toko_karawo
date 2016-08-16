@@ -3,6 +3,7 @@ class Kategori extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		$this->load->model('Mod_kategori');
 	}
 
@@ -17,8 +18,15 @@ class Kategori extends CI_Controller{
 				$this->form_validation->set_rules('nama','name','required');
 				$this->form_validation->set_rules('link','link','required');
 				if($this->form_validation->run() == TRUE){
-					$this->Mod_kategori->save();
-					redirect('admin/kategori');
+					$simpan=$this->Mod_kategori->save();
+					if($simpan == true){
+						echo $this->session->set_flashdata('pesan','data berhasil disimpan');
+						redirect('admin/kategori');
+					}else{
+						echo $this->session->set_flashdata('pesan','data gagal disimpan');
+						redirect('admin/kategori');
+					}
+					
 				}else{
 					$data['parent']=$this->Mod_kategori->selectParent()->result();
 					$this->template->load('templateadmin','admin/kategori/post',$data);
@@ -32,11 +40,27 @@ class Kategori extends CI_Controller{
 
 	function edit(){
 			if(isset($_POST['ubah'])){
-						$this->Mod_kategori->update();
-						redirect('admin/kategori');
+						$this->form_validation->set_rules('nama','names','required');
+						$this->form_validation->set_rules('link','linkes','required');
+						if($this->form_validation->run() == TRUE){
+								$simpan=$this->Mod_kategori->update();
+								if($simpan==true){
+									echo $this->session->set_flashdata('pesan','data berhasil diubah');
+									redirect('admin/kategori');
+								}else{
+									echo $this->session->set_flashdata('pesan','data gagal diubah');
+									redirect('admin/kategori');
+								}
+								
+						}else{
+							$param=$this->uri->segment(4);
+							$data['kategori']=$this->Mod_kategori->selectOne($param)->row_array();
+							$data['parent']=$this->Mod_kategori->selectParent()->result();
+							$this->template->load('templateadmin','admin/kategori/edit',$data);
+						}
+						
 			}else{
 					$param=$this->uri->segment(4);
-					echo $param;
 					$data['kategori']=$this->Mod_kategori->selectOne($param)->row_array();
 					$data['parent']=$this->Mod_kategori->selectParent()->result();
 					$this->template->load('templateadmin','admin/kategori/edit',$data);
